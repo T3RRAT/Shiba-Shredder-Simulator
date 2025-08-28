@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b34iuku20htvp"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Score" type="Label" parent="."]
+modulate = Color(0.531045, 0.478727, 0.749474, 1)
+offset_left = 3.0
+offset_right = 55.0
+offset_bottom = 23.0
+text = "Socre: "

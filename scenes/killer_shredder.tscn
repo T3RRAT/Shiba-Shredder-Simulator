@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://b63plrr82kbky"]
+
+[ext_resource type="Texture2D" uid="uid://dt40p5atokijt" path="res://papershreder spritesheep.png" id="1_4xgnr"]
+[ext_resource type="Script" uid="uid://bsmxlvjr8lxqb" path="res://scripts/killer_shredder.gd" id="1_mukh6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mukh6"]
+atlas = ExtResource("1_4xgnr")
+region = Rect2(0, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g60j2"]
+atlas = ExtResource("1_4xgnr")
+region = Rect2(300, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow2ue"]
+atlas = ExtResource("1_4xgnr")
+region = Rect2(600, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wfcj"]
+atlas = ExtResource("1_4xgnr")
+region = Rect2(900, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfnxh"]
+atlas = ExtResource("1_4xgnr")
+region = Rect2(1200, 0, 300, 297)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycdua"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mukh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g60j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow2ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wfcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfnxh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g60j2"]
+distance = 25.0
+
+[node name="Killer Shredder" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_mukh6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ycdua")
+autoplay = "default"
+frame_progress = 0.783129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_g60j2")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6p7najrwjnow"]
+
+[ext_resource type="Script" uid="uid://cmydaxjjp1kw6" path="res://scripts/death_screen.gd" id="1_mqh5l"]
+[ext_resource type="Texture2D" uid="uid://dt40p5atokijt" path="res://papershreder spritesheep.png" id="1_uyutr"]
+[ext_resource type="AudioStream" uid="uid://dke3yxfifad8x" path="res://assets/music/paper shredder trimmed.mp3" id="2_dwo6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mukh6"]
+atlas = ExtResource("1_uyutr")
+region = Rect2(0, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g60j2"]
+atlas = ExtResource("1_uyutr")
+region = Rect2(300, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow2ue"]
+atlas = ExtResource("1_uyutr")
+region = Rect2(600, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wfcj"]
+atlas = ExtResource("1_uyutr")
+region = Rect2(900, 0, 300, 297)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfnxh"]
+atlas = ExtResource("1_uyutr")
+region = Rect2(1200, 0, 300, 297)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwo6e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mukh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g60j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow2ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wfcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfnxh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Death Screen" type="Node2D"]
+script = ExtResource("1_mqh5l")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(0.525654, 0.212571, 0.586076, 1)
+offset_left = 68.0
+offset_top = 245.0
+offset_right = 237.0
+offset_bottom = 278.0
+scale = Vector2(6.646, 2.67294)
+text = "You Got Shredded :("
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(168, 173)
+sprite_frames = SubResource("SpriteFrames_dwo6e")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(525, 549)
+rotation = 0.146176
+scale = Vector2(1.40999, 1.59344)
+sprite_frames = SubResource("SpriteFrames_dwo6e")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(1016.55, 548.657)
+rotation = -0.0409075
+sprite_frames = SubResource("SpriteFrames_dwo6e")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+position = Vector2(252, 532)
+rotation = 0.326552
+sprite_frames = SubResource("SpriteFrames_dwo6e")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(636, 255)
+scale = Vector2(11.12, 1)
+sprite_frames = SubResource("SpriteFrames_dwo6e")
+autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(521, 343)
+scale = Vector2(0.682933, 1.18824)
+stream = ExtResource("2_dwo6e")
+volume_db = -2.375
+autoplay = true
+max_distance = 1355.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
